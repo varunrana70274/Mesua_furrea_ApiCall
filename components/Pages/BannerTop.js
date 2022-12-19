@@ -5,7 +5,7 @@ import { WebsiteService } from '../../services/WebsiteService';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import { Image } from 'native-base';
 import { Common } from '../../helpers/common';
-
+// import { SliderBox } from 'react-native-image-slider-box';
 export default function BannerTop() {
     const [sliderList, setSliderList] = useState([]);
     const getSlider = async () => {
@@ -27,10 +27,10 @@ export default function BannerTop() {
             getSlider();
         }
     }, []);
-    // sliderList.map(item => console.log('`${Common.fileUrl()}${item.fileUrl}`', `${Common.fileUrl()}${item.fileUrl}`))
+    sliderList.map(item => console.log('items', `${Common.fileUrl()}${item.fileUrl}`))
     // console.log('rana', sliderList);
     return (
-        <View >
+        <>
             <SwiperFlatList
                 autoplay
                 autoplayLoop
@@ -42,8 +42,8 @@ export default function BannerTop() {
                 renderItem={({ item }) => (
                     <View style={styles.Banner} key={item.id}>
                         <Image
-                            source={`${Common.fileUrl()}${item.fileUrl}`}
-                            width={390}
+                            source={{ uri: `${Common.fileUrl()}${item.fileUrl}` }}
+                            width={370}
                             // height={200}
                             // width="100%"
                             height={190}
@@ -53,7 +53,7 @@ export default function BannerTop() {
                     </View>
                 )}
             />
-        </View>
+        </>
     );
 }
 
